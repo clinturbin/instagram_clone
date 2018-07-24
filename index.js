@@ -8,9 +8,9 @@ var images = [ { 'author': 'user1', 'source': 'images/image0.jpg', 'index': 0, '
                { 'author': 'user8', 'source': 'images/image7.jpg', 'index': 7, 'caption': 'This is an image.'}
 ];
 
-
 var lightbox = document.querySelector('.lightbox_screen');
 var imageThumbnails = document.querySelector('.image_thumbnails');
+
 
 // use (var image in images) instead
 for (var i = 0; i < images.length; i++) {
@@ -26,19 +26,23 @@ for (var i = 0; i < images.length; i++) {
     imageThumbnails.appendChild(imageContainer);
 }
 
-var imageContainers = document.querySelectorAll('.img_container');
+var imageContainers = document.querySelectorAll('.image');
+var lighboxImageContainer = document.querySelector('.lb_img_container');
 
-// Open Lightbox
-var showLightBox = function () {
-    lightbox.classList.remove('hide');
-};
-// Close Lightbox
+
 var hideLightBox = function () {
     lightbox.classList.add('hide');
 }
 
-for (var container of imageContainers) {
-    container.addEventListener('click', showLightBox);    
+for (var i = 0; i < images.length; i++) {
+    imageContainers[i].addEventListener('click', function () {
+        console.log(this);
+        var imageSource = this.getAttribute('src');
+        console.log(imageSource);
+        var lightboxImage = document.querySelector('.lb_image');
+        lightbox.classList.remove('hide');
+        lightboxImage.setAttribute('src', imageSource);
+    });
 }
 
 var lightBoxCloseButton = document.querySelector('.lb_close_btn');
