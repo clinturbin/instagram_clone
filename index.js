@@ -10,7 +10,7 @@ var images = [ { 'author': 'user1', 'source': 'images/image0.jpg', 'index': 0, '
 
 var lightbox = document.querySelector('.lightbox_screen');
 var imageThumbnails = document.querySelector('.image_thumbnails');
-
+var currentIndex;
 
 for (var i = 0; i < images.length; i++) {
     var image = images[i];
@@ -28,20 +28,42 @@ for (var i = 0; i < images.length; i++) {
 
 //------------------ SHOW LIGHT BOX -------------------------------------
 var lighboxImageContainers = document.querySelectorAll('.img_container');
+var lightboxImage = document.querySelector('.lb_image');
 
 var showLightBox = function () {
     lightbox.classList.remove('hide');
-    var index = event.currentTarget.getAttribute('data-index');
-    var imageSource = images[index].source;
-    var lightboxImage = document.querySelector('.lb_image');
+    currentIndex = Number(event.currentTarget.getAttribute('data-index'));
+    var imageSource = images[currentIndex].source;
     lightboxImage.setAttribute('src', imageSource);
-    
-    // Handle click events for arrow buttons
 };
 
 for (var container of lighboxImageContainers) {
     container.addEventListener('click', showLightBox);
 }
+
+//----------------- Forward and Back Arrows -----------------------------
+
+var backArrow = document.querySelector('.back_arrow');
+var forwardArrow = document.querySelector('.forward_arrow');
+
+forwardArrow.addEventListener('click', function () {
+    currentIndex += 1;
+    if (currentIndex === images.length) {
+        currentIndex = 0;
+    }
+    var imageSource = images[currentIndex].source;
+    lightboxImage.setAttribute('src', imageSource);
+});
+
+backArrow.addEventListener('click', function () {
+    currentIndex -= 1;
+    if (currentIndex < 0) {
+        currentIndex = images.length - 1;
+    }
+    var imageSource = images[currentIndex].source;
+    lightboxImage.setAttribute('src', imageSource);
+});
+
 
 //------------------ HIDE LIGHT BOX -------------------------------------
 var hideLightBox = function () {
