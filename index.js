@@ -12,7 +12,6 @@ var lightbox = document.querySelector('.lightbox_screen');
 var imageThumbnails = document.querySelector('.image_thumbnails');
 
 
-// use (var image in images) instead
 for (var i = 0; i < images.length; i++) {
     var image = images[i];
     var newImage = document.createElement('img');
@@ -21,29 +20,35 @@ for (var i = 0; i < images.length; i++) {
 
     var imageContainer = document.createElement('div');
     imageContainer.classList.add('img_container');
+    imageContainer.setAttribute('data-index', image.index);
     imageContainer.appendChild(newImage);
 
     imageThumbnails.appendChild(imageContainer);
 }
 
-var imageContainers = document.querySelectorAll('.image');
-var lighboxImageContainer = document.querySelector('.lb_img_container');
+//------------------ SHOW LIGHT BOX -------------------------------------
+var lighboxImageContainers = document.querySelectorAll('.img_container');
 
+var showLightBox = function () {
+    lightbox.classList.remove('hide');
+    var index = event.currentTarget.getAttribute('data-index');
+    var imageSource = images[index].source;
+    var lightboxImage = document.querySelector('.lb_image');
+    lightboxImage.setAttribute('src', imageSource);
+    
+    // Handle click events for arrow buttons
+};
 
+for (var container of lighboxImageContainers) {
+    container.addEventListener('click', showLightBox);
+}
+
+//------------------ HIDE LIGHT BOX -------------------------------------
 var hideLightBox = function () {
     lightbox.classList.add('hide');
 }
 
-for (var i = 0; i < images.length; i++) {
-    imageContainers[i].addEventListener('click', function () {
-        console.log(this);
-        var imageSource = this.getAttribute('src');
-        console.log(imageSource);
-        var lightboxImage = document.querySelector('.lb_image');
-        lightbox.classList.remove('hide');
-        lightboxImage.setAttribute('src', imageSource);
-    });
-}
-
 var lightBoxCloseButton = document.querySelector('.lb_close_btn');
 lightBoxCloseButton.addEventListener('click', hideLightBox);
+
+
