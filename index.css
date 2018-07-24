@@ -4,8 +4,22 @@ html, body {
     font-size: 10px;
     margin: 0;
     box-sizing: border-box;
+    --inst_blue: #4c68d7;
 }
 
+.header {
+    background-color: var(--inst_blue);
+}
+
+.title {
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    color: white;
+    padding: 1em .5em;
+    margin: 0;
+}
+
+/* Container for all thumbnail images */
 .image_thumbnails {
     width: 90%;
     margin: 5em auto;
@@ -14,6 +28,7 @@ html, body {
     justify-content: center;
 }
 
+/* Container for individual thumbnail */
 .img_container {
     width: 30em;
     height: 30em;
@@ -23,4 +38,39 @@ html, body {
 .image {
     height: 100%;
     width: 100%;
+    border-radius: 2em;
+}
+
+.img_border {
+    border: .6em solid var(--inst_blue);
+}
+
+/* Lightbox */
+
+.lightbox_screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide {
+    display: none;
+}
+
+.lightbox_container {
+    width: 70%;
+    height: 60%;
+    background-color: white;
+}
+
+.lb_img_container {
+    width: 55%;
+    height: 100%;
+    border: 2px solid black;
 }
