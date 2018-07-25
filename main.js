@@ -1,11 +1,11 @@
-var images = [ { 'author': 'user1', 'source': 'images/image0.jpg', 'caption': 'This is image 1.'},
-               { 'author': 'user2', 'source': 'images/image1.jpg', 'caption': 'This is image 2.'},
-               { 'author': 'user3', 'source': 'images/image2.jpg', 'caption': 'This is image 3.'},
-               { 'author': 'user4', 'source': 'images/image3.jpg', 'caption': 'This is image 4.'},
-               { 'author': 'user5', 'source': 'images/image4.jpg', 'caption': 'This is image 5.'},
-               { 'author': 'user6', 'source': 'images/image5.jpg', 'caption': 'This is image 6.'},
-               { 'author': 'user7', 'source': 'images/image6.jpg', 'caption': 'This is image 7.'},
-               { 'author': 'user8', 'source': 'images/image7.jpg', 'caption': 'This is image 8.'}
+var images = [ { 'source': 'images/image0.jpg', 'caption': 'This is image 1.', 'likes': 0},
+               { 'source': 'images/image1.jpg', 'caption': 'This is image 2.', 'likes': 0},
+               { 'source': 'images/image2.jpg', 'caption': 'This is image 3.', 'likes': 0},
+               { 'source': 'images/image3.jpg', 'caption': 'This is image 4.', 'likes': 0},
+               { 'source': 'images/image4.jpg', 'caption': 'This is image 5.', 'likes': 0},
+               { 'source': 'images/image5.jpg', 'caption': 'This is image 6.', 'likes': 0},
+               { 'source': 'images/image6.jpg', 'caption': 'This is image 7.', 'likes': 0},
+               { 'source': 'images/image7.jpg', 'caption': 'This is image 8.', 'likes': 0}
 ];
 
 var currentImageIndex;
@@ -13,7 +13,8 @@ var currentImageIndex;
 var mainThumbnailContainer = document.querySelector('.main-thumbnail-container');
 var lightBoxScreen = document.querySelector('.lightbox-screen');
 var lightBoxImage = document.querySelector('.lightbox-image');
-var userNameContainers = document.querySelectorAll('.user-name');
+var likeButton = document.querySelector('.like-image');
+var likesDisplay = document.querySelector('.number-of-likes');
 var userComment = document.querySelector('.comment');
 var backArrow = document.querySelector('.back-arrow');
 var forwardArrow = document.querySelector('.forward-arrow');
@@ -23,8 +24,8 @@ var lightBoxCloseButton = document.querySelector('.close-button');
 var updateLightBox = function (currentIndex) {
     currentImageIndex = currentIndex;
     setLightBoxImageSource(currentIndex);
-    updateUserName(currentIndex);
     updateComment(currentIndex);
+    showLikes(currentIndex);
 };
 
 var setLightBoxImageSource = function (currentIndex) {
@@ -32,16 +33,14 @@ var setLightBoxImageSource = function (currentIndex) {
     lightBoxImage.setAttribute('src', imageSource);
 };
 
-var updateUserName = function (currentIndex) {
-    var userName = images[currentIndex].author;
-    for (var item of userNameContainers) {
-        item.textContent = userName;
-    }
-};
-
 var updateComment = function (currentIndex) {
     var comment = images[currentIndex].caption;
     userComment.textContent = comment;
+};
+
+var showLikes = function (currentIndex) {
+    var numberLikes = images[currentIndex].likes;
+    likesDisplay.textContent = numberLikes;
 };
 
 var hideLightBox = function () {
@@ -90,6 +89,11 @@ backArrow.addEventListener('click', function () {
         currentImageIndex = images.length - 1;
     }
     updateLightBox(currentImageIndex);
+});
+
+likeButton.addEventListener('click', function () {
+    images[currentImageIndex].likes += 1;
+    showLikes(currentImageIndex);
 });
 
 lightBoxCloseButton.addEventListener('click', hideLightBox);
