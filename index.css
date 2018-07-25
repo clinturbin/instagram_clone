@@ -35,14 +35,14 @@ html, body {
     margin: 1em;
 }
 
+/* .img_container:hover {
+    border: .6em solid var(--inst_blue);
+    border-radius: 1em;
+} */
+
 .image, .lb_image {
     width: 100%;
     height: 100%;
-    /* border-radius: 2em; */
-}
-
-.img_border {
-    border: .6em solid var(--inst_blue);
 }
 
 /* Lightbox */
