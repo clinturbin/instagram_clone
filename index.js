@@ -1,19 +1,20 @@
-var images = [ { 'author': 'user1', 'source': 'images/image0.jpg', 'caption': 'This is an image.'},
-               { 'author': 'user2', 'source': 'images/image1.jpg', 'caption': 'This is an image.'},
-               { 'author': 'user3', 'source': 'images/image2.jpg', 'caption': 'This is an image.'},
-               { 'author': 'user4', 'source': 'images/image3.jpg', 'caption': 'This is an image.'},
-               { 'author': 'user5', 'source': 'images/image4.jpg', 'caption': 'This is an image.'},
-               { 'author': 'user6', 'source': 'images/image5.jpg', 'caption': 'This is an image.'},
-               { 'author': 'user7', 'source': 'images/image6.jpg', 'caption': 'This is an image.'},
-               { 'author': 'user8', 'source': 'images/image7.jpg', 'caption': 'This is an image.'}
+var images = [ { 'author': 'user1', 'source': 'images/image0.jpg', 'caption': 'This is image 1.'},
+               { 'author': 'user2', 'source': 'images/image1.jpg', 'caption': 'This is image 2.'},
+               { 'author': 'user3', 'source': 'images/image2.jpg', 'caption': 'This is image 3.'},
+               { 'author': 'user4', 'source': 'images/image3.jpg', 'caption': 'This is image 4.'},
+               { 'author': 'user5', 'source': 'images/image4.jpg', 'caption': 'This is image 5.'},
+               { 'author': 'user6', 'source': 'images/image5.jpg', 'caption': 'This is image 6.'},
+               { 'author': 'user7', 'source': 'images/image6.jpg', 'caption': 'This is image 7.'},
+               { 'author': 'user8', 'source': 'images/image7.jpg', 'caption': 'This is image 8.'}
 ];
 
 var currentImageIndex;
 
 var allImageThumbnails = document.querySelector('.image_thumbnails');
 var lightBoxScreen = document.querySelector('.lightbox_screen');
-var lightBoxImageContainers = document.querySelectorAll('.img_container');
-var lightBoxImage = document.querySelector('.lb_image');
+var lightBoxImage = document.querySelector('.lightbox-image');
+var userNameContainer = document.querySelector('.lb_user_name');
+var userComment = document.querySelector('.lb_comment');
 var backArrow = document.querySelector('.back_arrow');
 var forwardArrow = document.querySelector('.forward_arrow');
 var lightBoxCloseButton = document.querySelector('.lb_close_btn');
@@ -23,12 +24,19 @@ var setLightBoxImageSource = function (currentIndex) {
     currentImageIndex = currentIndex;
     var imageSource = images[currentIndex].source;
     lightBoxImage.setAttribute('src', imageSource);
+    setLightBoxMetaData(currentIndex);
+};
+
+var setLightBoxMetaData = function (currentIndex) {
+    var userName = images[currentIndex].author;
+    var comment = images[currentIndex].caption;
+    userNameContainer.textContent = userName;
+    userComment.textContent = comment;
 };
 
 var hideLightBox = function () {
     lightBoxScreen.classList.add('hide');
 };
-
 
 
 for (var i = 0; i < images.length; i++) {
@@ -40,15 +48,10 @@ for (var i = 0; i < images.length; i++) {
         var image = images[i];
         var newImage = document.createElement('img');
         newImage.setAttribute('src', image.source);
-        newImage.classList.add('image');
+        newImage.classList.add('image-thumb');
 
-        // Create Container to place individual images in
-        var thumbNailContainer = document.createElement('div');
-        thumbNailContainer.classList.add('img_container');
-        thumbNailContainer.appendChild(newImage);
-
-        // Add image and container to page
-        allImageThumbnails.appendChild(thumbNailContainer);
+        // Add to screen
+        allImageThumbnails.appendChild(newImage);
 
         // make a function to show the light box screen
         var showLightBox = function (event) {
@@ -57,7 +60,7 @@ for (var i = 0; i < images.length; i++) {
         }
 
         // Add event listener to image container to show light box when clicked
-        thumbNailContainer.addEventListener('click', showLightBox);
+        newImage.addEventListener('click', showLightBox);
     })();
 }
 
@@ -79,42 +82,3 @@ backArrow.addEventListener('click', function () {
 });
 
 lightBoxCloseButton.addEventListener('click', hideLightBox);
-
-
-
-
-
-
-
-
-
-
-
-//----------------  ADD IMAGES TO PAGE  --------------------------------
-
-// for (var i = 0; i < images.length; i++) {
-//     var image = images[i];
-//     var newImage = document.createElement('img');
-//     newImage.setAttribute('src', image.source);
-//     newImage.classList.add('image');
-
-//     var thumbNailContainer = document.createElement('div');
-//     thumbNailContainer.classList.add('img_container');
-//     thumbNailContainer.setAttribute('data-index', image.index);
-//     thumbNailContainer.appendChild(newImage);
-
-//     allImageThumbnails.appendChild(thumbNailContainer);
-// }
-
-//------------------ SHOW LIGHT BOX -------------------------------------
-
-
-// var showLightBox = function (event) {
-//     lightBoxScreen.classList.remove('hide');
-//     currentIndex = Number(event.currentTarget.getAttribute('data-index'));
-//     setImageSource(currentIndex);
-// };
-
-// for (var container of lightBoxImageContainers) {
-//     container.addEventListener('click', showLightBox);
-// }
