@@ -10,32 +10,38 @@ var images = [ { 'author': 'user1', 'source': 'images/image0.jpg', 'caption': 'T
 
 var currentImageIndex;
 
-var allImageThumbnails = document.querySelector('.image_thumbnails');
-var lightBoxScreen = document.querySelector('.lightbox_screen');
+var mainThumbnailContainer = document.querySelector('.main-thumbnail-container');
+var lightBoxScreen = document.querySelector('.lightbox-screen');
 var lightBoxImage = document.querySelector('.lightbox-image');
-var userNameContainer = document.querySelector('.lb_user_name');
-var userComment = document.querySelector('.lb_comment');
-var backArrow = document.querySelector('.back_arrow');
-var forwardArrow = document.querySelector('.forward_arrow');
-var lightBoxCloseButton = document.querySelector('.lb_close_btn');
+var userNameContainers = document.querySelectorAll('.user-name');
+var userComment = document.querySelector('.comment');
+var backArrow = document.querySelector('.back-arrow');
+var forwardArrow = document.querySelector('.forward-arrow');
+var lightBoxCloseButton = document.querySelector('.close-button');
 
 var setLightBoxImageSource = function (currentIndex) {
     // Set the global variable currentImageIndex to currentIndex
     currentImageIndex = currentIndex;
     var imageSource = images[currentIndex].source;
     lightBoxImage.setAttribute('src', imageSource);
-    setLightBoxMetaData(currentIndex);
+    updateUserName(currentIndex);
+    updateComment(currentIndex);
 };
 
-var setLightBoxMetaData = function (currentIndex) {
+var updateUserName = function (currentIndex) {
     var userName = images[currentIndex].author;
+    for (var item of userNameContainers) {
+        item.textContent = userName;
+    }
+};
+
+var updateComment = function (currentIndex) {
     var comment = images[currentIndex].caption;
-    userNameContainer.textContent = userName;
     userComment.textContent = comment;
 };
 
 var hideLightBox = function () {
-    lightBoxScreen.classList.add('hide');
+    lightBoxScreen.classList.add('hide-screen');
 };
 
 
@@ -48,14 +54,14 @@ for (var i = 0; i < images.length; i++) {
         var image = images[i];
         var newImage = document.createElement('img');
         newImage.setAttribute('src', image.source);
-        newImage.classList.add('image-thumb');
+        newImage.classList.add('thumb-image');
 
         // Add to screen
-        allImageThumbnails.appendChild(newImage);
+        mainThumbnailContainer.appendChild(newImage);
 
         // make a function to show the light box screen
         var showLightBox = function (event) {
-            lightBoxScreen.classList.remove('hide');
+            lightBoxScreen.classList.remove('hide-screen');
             setLightBoxImageSource(currentIndex);
         }
 

@@ -1,41 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <link rel="stylesheet" href="index.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="icon" href="images/instagram_favicon.png"/>
     <title>Instagram Clone</title>
 </head>
 <body>
-    <header class="header">
-        <h1 class="title">My Instagram Clone</h1>
-    </header>
-    
-    <section class="image_thumbnails"></section>
-        
-    <div class="lightbox_screen hide">  <!-- hide -->
-        <div class="lightbox_container">
-            <div class="lb_user_bar">
-                <div class="lb_user_items">
-                    <p class="lb_user_name">User 1</p>
-                    <p class="lb_spacer">-</p>
-                    <a class="lb_follow" href="#">Follow</a>
-                    <p class="lb_comment"></p>
-                </div>
-                <div class="lb_close_btn">X</div>
-            </div>
-            <div class="lb_img_container">
-                <img src="images/image1.jpg" class="lightbox-image" alt="">
-                <div class="arrow_buttons">
-                    <div class="back_arrow"><</div>
-                    <div class="forward_arrow">></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <header class="header-nav-bar"></header>
+    <main class="main-body-content">
+        <div class="main-thumbnail-container"></div>
 
-    <script src="index.js"></script>
+        <div class="lightbox-screen hide-screen">    <!-- hide-screen -->
+            <div class="lightbox-container">
+                <div class="user-container">
+                    <div class="user-img-container"><img src="images/c-logo.png" class="image user-logo-img" alt=""></div>
+                    <div class="user-name">username1</div>
+                    <div class="user-spacer">-</div>
+                    <div class="user-follow"><a href="#" class="follow-link">Follow</a></div>
+                    <div class="close-button">X</div>
+                </div>
+                <div class="lightbox-img-container">
+                    <img src="images/image0.jpg" class="lightbox-image" alt="">
+                    <div class="arrow-buttons">
+                        <div class="back-arrow"><</div>
+                        <div class="forward-arrow">></div>
+                    </div>
+                </div>
+                <div class="meta-data-container">
+                    <div class="meta-icons">
+                        <div class="like-icon-img-container"><img src="images/like-heart.png" class="image" alt=""></div>
+                        <div class="comment-icon-img-container"><img src="images/add-comment.png" class="image" alt=""></div>
+                    </div>
+                    <p class="meta-likes"><span class="number-of-likes">13</span> Likes</p>
+                    <div class="meta-comments">
+                        <p class="user-comment"><span class="user-name">Username1</span> "<span class="comment">This is a comment.</span>"</p>
+                    </div>
+                    <p class="comment-date">July 25, 2018</p>
+                </div>
+                
+            </div>
+        </div>     
+    </main>
+
+
+
+    <script src="main.js"></script>
 </body>
 </html>
-

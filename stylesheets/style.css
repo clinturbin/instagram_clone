@@ -1,0 +1,67 @@
+@import 'lightbox.css';
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-size: 10px;
+    margin: 0;
+    box-sizing: border-box;
+    --inst_blue: #4c68d7;
+}
+
+
+
+.header-nav-bar {
+    width: 100%;
+    height: 10%;
+    background-color: white;
+}
+
+.follow-link {
+    text-decoration: none;
+    color: var(--inst_blue);
+    padding-left: .5rem;
+}
+
+/* -----------  Main Body Content (Image Thumbnails ------------------ */
+
+.main-body-content {
+    width: 100%;
+    height: 90%;
+    position: relative;
+    overflow-y: scroll;
+    background-color: #fafafa;
+    border-top: 1px solid black;
+}
+
+.main-thumbnail-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-y: auto;
+    margin: 1rem 0;
+}
+
+.thumb-image {
+    width: 30rem;
+    height: 30rem;
+    margin: .5rem;
+    box-sizing: border-box;
+}
+
+.thumb-image:hover {
+    border: .6rem solid var(--inst_blue);
+    border-radius: .5rem;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+}
+
+.hide-screen {
+    display: none;
+}
+

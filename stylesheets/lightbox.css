@@ -1,0 +1,147 @@
+/* ==================  LIGHTBOX  =================== */
+
+
+.lightbox-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
+}
+
+.lightbox-container {
+    width: 36rem;
+    margin: auto;
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*--------- Light Box - User Info Container -----------*/
+.user-container {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.user-img-container {
+    height: 2rem;
+    width: 2rem;
+    margin: .5rem;
+}
+
+.user-name, .user-spacer, .user-follow {
+    padding-right: .2rem;
+}
+
+.close-button {
+    font-size: 2rem;
+    padding: .5rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+/*--------- Light Box - Current Image Container -----------*/
+.lightbox-img-container {
+    width: 36rem;
+    height: 36rem;
+    position: relative;
+}
+
+.lightbox-image {
+    width: 100%;
+    height: 100%;
+}
+
+/*----------- Light Box - Meta Data Container -------------*/
+.meta-data-container {
+    font-size: 1.5rem;
+}
+
+/* .meta-box {
+    height: 4rem;
+    margin: 0 1rem;
+} */
+
+.meta-icons {
+    height: 4rem;
+    margin: 0 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.like-icon-img-container, .comment-icon-img-container {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 .5em;
+}
+
+.meta-likes {
+    margin: 1rem;
+    font-weight: bold;
+}
+
+.meta-comments {
+    margin: 1rem;
+}
+.user-name {
+    font-weight: bold;
+}
+
+.comment-date {
+    margin: 1rem;
+    color: #999;
+    text-transform: uppercase;
+}
+
+/*----------- Light Box - Arrow Buttons -------------*/
+.arrow-buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.back-arrow, .forward-arrow {
+    font-size: 2em;
+    font-weight: bold;
+    background-color: rgba(211,211,211,.6);
+    padding: .5em;
+    margin: 0 .5em;
+}
+
+/* =================  MEDIA QUERIES ====================== */
+
+
+@media(min-width: 375px) {
+    .lightbox-container {
+        width: 37.5rem;
+        flex-wrap: wrap;
+    }
+    .lightbox-img-container {
+        width: 37.5rem;
+        height: 37.5rem;
+    }
+}
+
+@media(min-width: 736px) {
+    .lightbox-screen {
+        display: flex;
+        align-items: center;
+    }
+    .lightbox-container {
+        width: 73rem;
+        height: 39rem
+    }
+    .lightbox-img-container {
+        width: 39rem;
+        height: 39rem;
+        order: -1;
+    }
+}
