@@ -19,13 +19,17 @@ var backArrow = document.querySelector('.back-arrow');
 var forwardArrow = document.querySelector('.forward-arrow');
 var lightBoxCloseButton = document.querySelector('.close-button');
 
-var setLightBoxImageSource = function (currentIndex) {
-    // Set the global variable currentImageIndex to currentIndex
+
+var updateLightBox = function (currentIndex) {
     currentImageIndex = currentIndex;
-    var imageSource = images[currentIndex].source;
-    lightBoxImage.setAttribute('src', imageSource);
+    setLightBoxImageSource(currentIndex);
     updateUserName(currentIndex);
     updateComment(currentIndex);
+};
+
+var setLightBoxImageSource = function (currentIndex) {
+    var imageSource = images[currentIndex].source;
+    lightBoxImage.setAttribute('src', imageSource);
 };
 
 var updateUserName = function (currentIndex) {
@@ -62,7 +66,8 @@ for (var i = 0; i < images.length; i++) {
         // make a function to show the light box screen
         var showLightBox = function (event) {
             lightBoxScreen.classList.remove('hide-screen');
-            setLightBoxImageSource(currentIndex);
+            // setLightBoxImageSource(currentIndex);
+            updateLightBox(currentIndex);
         }
 
         // Add event listener to image container to show light box when clicked
@@ -76,7 +81,7 @@ forwardArrow.addEventListener('click', function () {
     if (currentImageIndex === images.length) {
         currentImageIndex = 0;
     }
-    setLightBoxImageSource(currentImageIndex);
+    updateLightBox(currentImageIndex);
 });
 
 backArrow.addEventListener('click', function () {
@@ -84,7 +89,7 @@ backArrow.addEventListener('click', function () {
     if (currentImageIndex < 0) {
         currentImageIndex = images.length - 1;
     }
-    setLightBoxImageSource(currentImageIndex);
+    updateLightBox(currentImageIndex);
 });
 
 lightBoxCloseButton.addEventListener('click', hideLightBox);
