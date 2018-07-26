@@ -1,6 +1,5 @@
 /* ==================  LIGHTBOX  =================== */
 
-
 .lightbox-screen {
     position: absolute;
     top: 0;
@@ -35,6 +34,12 @@
 
 .user-name, .user-spacer, .user-follow {
     padding-right: .2rem;
+}
+
+.follow-link {
+    text-decoration: none;
+    color: var(--inst_blue);
+    padding-left: .5rem;
 }
 
 .close-button {
@@ -108,58 +113,4 @@
     background-color: rgba(211,211,211,.6);
     padding: .5em;
     margin: 0 .5em;
-}
-
-/* =================  MEDIA QUERIES ====================== */
-
-
-@media(min-width: 375px) {
-    .lightbox-container {
-        width: 37.5rem;
-        flex-wrap: wrap;
-    }
-    .lightbox-img-container {
-        width: 37.5rem;
-        height: 37.5rem;
-    }
-}
-
-@media(min-width: 736px) {
-    .lightbox-screen {
-        display: flex;
-        align-items: center;
-    }
-    .lightbox-container {
-        width: 73rem;
-        height: 39rem
-    }
-    .lightbox-img-container {
-        width: 39rem;
-        height: 39rem;
-        order: -1;
-    }
-}
-
-@media(min-width: 850px) {
-    .lightbox-container {
-        width: 83rem;
-        height: 50rem;
-        flex-wrap: wrap;
-    }
-    .lightbox-img-container {
-        width: 50rem;
-        height: 50rem;
-    }
-}
-
-@media(min-width: 1024px) {
-    .lightbox-container {
-        width: 100rem;
-        height: 55rem;
-        flex-wrap: wrap;
-    }
-    .lightbox-img-container {
-        width: 55rem;
-        height: 55rem;
-    }
 }
