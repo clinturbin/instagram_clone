@@ -21,13 +21,6 @@ var forwardArrow = document.querySelector('.forward-arrow');
 var lightBoxCloseButton = document.querySelector('.close-button');
 
 
-var updateLightBox = function (currentIndex) {
-    currentImageIndex = currentIndex;
-    setLightBoxImageSource(currentIndex);
-    updateComment(currentIndex);
-    showLikes(currentIndex);
-};
-
 var setLightBoxImageSource = function (currentIndex) {
     var imageSource = images[currentIndex].source;
     lightBoxImage.setAttribute('src', imageSource);
@@ -43,6 +36,13 @@ var showLikes = function (currentIndex) {
     likesDisplay.textContent = numberLikes;
 };
 
+var updateLightBox = function (currentIndex) {
+    currentImageIndex = currentIndex;
+    setLightBoxImageSource(currentIndex);
+    updateComment(currentIndex);
+    showLikes(currentIndex);
+};
+
 var hideLightBox = function () {
     lightBoxScreen.classList.add('hide-screen');
 };
@@ -50,46 +50,43 @@ var hideLightBox = function () {
 
 for (var i = 0; i < images.length; i++) {
     (function () {
-        // decalare a variable to keep track of current index
         var currentIndex = i;
 
-        // Create new image element and add image to it
+        // Create new image element and add image to the screen
         var image = images[i];
         var newImage = document.createElement('img');
         newImage.setAttribute('src', image.source);
         newImage.classList.add('thumb-image');
-
-        // Add to screen
         mainThumbnailContainer.appendChild(newImage);
 
-        // make a function to show the light box screen
         var showLightBox = function (event) {
             lightBoxScreen.classList.remove('hide-screen');
-            // setLightBoxImageSource(currentIndex);
             updateLightBox(currentIndex);
         }
 
-        // Add event listener to image container to show light box when clicked
         newImage.addEventListener('click', showLightBox);
     })();
 }
 
 
-forwardArrow.addEventListener('click', function () {
+var increaseIndex = function () {
     currentImageIndex += 1;
     if (currentImageIndex === images.length) {
         currentImageIndex = 0;
     }
     updateLightBox(currentImageIndex);
-});
+};
 
-backArrow.addEventListener('click', function () {
+var decreaseIndex = function () {
     currentImageIndex -= 1;
     if (currentImageIndex < 0) {
         currentImageIndex = images.length - 1;
     }
     updateLightBox(currentImageIndex);
-});
+}
+
+forwardArrow.addEventListener('click', increaseIndex);
+backArrow.addEventListener('click', decreaseIndex);
 
 likeButton.addEventListener('click', function () {
     images[currentImageIndex].likes += 1;
@@ -97,3 +94,13 @@ likeButton.addEventListener('click', function () {
 });
 
 lightBoxCloseButton.addEventListener('click', hideLightBox);
+
+document.addEventListener("keydown", function (event) {
+    var keyName = event.key;
+    if (keyName === "ArrowLeft") {
+        decreaseIndex();
+    }
+    else if (keyName === "ArrowRight") {
+        increaseIndex();
+    }
+});
