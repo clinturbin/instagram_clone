@@ -20,7 +20,6 @@ var backArrow = document.querySelector('.back-arrow');
 var forwardArrow = document.querySelector('.forward-arrow');
 var lightBoxCloseButton = document.querySelector('.close-button');
 
-
 var setLightBoxImageSource = function (currentIndex) {
     var imageSource = images[currentIndex].source;
     lightBoxImage.setAttribute('src', imageSource);
@@ -91,13 +90,27 @@ likeButton.addEventListener('click', function () {
 });
 
 document.addEventListener("keydown", function (event) {
-    var keyName = event.key;
-    if (keyName === "ArrowLeft") {
-        decreaseIndex();
-    }
-    else if (keyName === "ArrowRight") {
-        increaseIndex();
+    switch (event.key) {
+        case "ArrowRight":
+            increaseIndex();
+            break;
+        case "ArrowLeft":
+            decreaseIndex();
+            break;
+        case "Escape":
+            hideLightBox();
+            break;
+        default:
+            return;
     }
 });
 
+
+var windowOnClick = function (event) {
+    if (event.target === lightBoxScreen) {
+        hideLightBox();
+    }
+};
+
+window.addEventListener("click", windowOnClick);
 lightBoxCloseButton.addEventListener('click', hideLightBox);
