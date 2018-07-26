@@ -47,28 +47,6 @@ var hideLightBox = function () {
     lightBoxScreen.classList.add('hide-screen');
 };
 
-
-for (var i = 0; i < images.length; i++) {
-    (function () {
-        var currentIndex = i;
-
-        // Create new image element and add image to the screen
-        var image = images[i];
-        var newImage = document.createElement('img');
-        newImage.setAttribute('src', image.source);
-        newImage.classList.add('thumb-image');
-        mainThumbnailContainer.appendChild(newImage);
-
-        var showLightBox = function (event) {
-            lightBoxScreen.classList.remove('hide-screen');
-            updateLightBox(currentIndex);
-        }
-
-        newImage.addEventListener('click', showLightBox);
-    })();
-}
-
-
 var increaseIndex = function () {
     currentImageIndex += 1;
     if (currentImageIndex === images.length) {
@@ -83,7 +61,26 @@ var decreaseIndex = function () {
         currentImageIndex = images.length - 1;
     }
     updateLightBox(currentImageIndex);
-}
+};
+
+//------------  ADDING IMAGES TO SCREEN  ------------
+
+images.forEach(function(image, i) {
+    var newImage = document.createElement('img');
+    newImage.setAttribute('src', image.source);
+    newImage.classList.add('thumb-image');
+    mainThumbnailContainer.appendChild(newImage);
+
+    var showLightBox = function (event) {
+        lightBoxScreen.classList.remove('hide-screen');
+        updateLightBox(i);
+    };
+
+    newImage.addEventListener('click', showLightBox);
+});
+
+
+//-------------   EVENT LISETENERS -----------------
 
 forwardArrow.addEventListener('click', increaseIndex);
 backArrow.addEventListener('click', decreaseIndex);
@@ -92,8 +89,6 @@ likeButton.addEventListener('click', function () {
     images[currentImageIndex].likes += 1;
     showLikes(currentImageIndex);
 });
-
-lightBoxCloseButton.addEventListener('click', hideLightBox);
 
 document.addEventListener("keydown", function (event) {
     var keyName = event.key;
@@ -104,3 +99,5 @@ document.addEventListener("keydown", function (event) {
         increaseIndex();
     }
 });
+
+lightBoxCloseButton.addEventListener('click', hideLightBox);
