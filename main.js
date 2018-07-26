@@ -1,11 +1,11 @@
-var images = [ { 'source': 'images/image0.jpg', 'caption': 'This is image 1.', 'likes': 0},
-               { 'source': 'images/image1.jpg', 'caption': 'This is image 2.', 'likes': 0},
-               { 'source': 'images/image2.jpg', 'caption': 'This is image 3.', 'likes': 0},
-               { 'source': 'images/image3.jpg', 'caption': 'This is image 4.', 'likes': 0},
-               { 'source': 'images/image4.jpg', 'caption': 'This is image 5.', 'likes': 0},
-               { 'source': 'images/image5.jpg', 'caption': 'This is image 6.', 'likes': 0},
-               { 'source': 'images/image6.jpg', 'caption': 'This is image 7.', 'likes': 0},
-               { 'source': 'images/image7.jpg', 'caption': 'This is image 8.', 'likes': 0}
+var images = [ { 'source': 'images/image0.jpg', 'caption': 'This is image 1.', 'likes': 0 },
+               { 'source': 'images/image1.jpg', 'caption': 'This is image 2.', 'likes': 0 },
+               { 'source': 'images/image2.jpg', 'caption': 'This is image 3.', 'likes': 0 },
+               { 'source': 'images/image3.jpg', 'caption': 'This is image 4.', 'likes': 0 },
+               { 'source': 'images/image4.jpg', 'caption': 'This is image 5.', 'likes': 0 },
+               { 'source': 'images/image5.jpg', 'caption': 'This is image 6.', 'likes': 0 },
+               { 'source': 'images/image6.jpg', 'caption': 'This is image 7.', 'likes': 0 },
+               { 'source': 'images/image7.jpg', 'caption': 'This is image 8.', 'likes': 0 }
 ];
 
 var currentImageIndex;
@@ -62,7 +62,7 @@ var decreaseIndex = function () {
     updateLightBox(currentImageIndex);
 };
 
-//------------  ADDING IMAGES TO SCREEN  ------------
+//------------  ADD IMAGES TO SCREEN  --------------
 
 images.forEach(function(image, i) {
     var newImage = document.createElement('img');
@@ -70,7 +70,7 @@ images.forEach(function(image, i) {
     newImage.classList.add('thumb-image');
     mainThumbnailContainer.appendChild(newImage);
 
-    var showLightBox = function (event) {
+    var showLightBox = function () {
         lightBoxScreen.classList.remove('hide-screen');
         updateLightBox(i);
     };
@@ -105,12 +105,10 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
-
-var windowOnClick = function (event) {
+window.addEventListener("click", function (event) {
     if (event.target === lightBoxScreen) {
         hideLightBox();
     }
-};
+});
 
-window.addEventListener("click", windowOnClick);
 lightBoxCloseButton.addEventListener('click', hideLightBox);
