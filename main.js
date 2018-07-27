@@ -10,29 +10,29 @@ var images = [ { 'source': 'images/image0.jpg', 'caption': 'This is image 1.', '
 
 var currentImageIndex;
 
-var mainThumbnailContainer = document.querySelector('.main-thumbnail-container');
-var lightBoxScreen = document.querySelector('.lightbox-screen');
-var lightBoxImage = document.querySelector('.lightbox-image');
-var likeButton = document.querySelector('.like-image');
-var likesDisplay = document.querySelector('.number-of-likes');
-var userComment = document.querySelector('.comment');
-var backArrow = document.querySelector('.back-arrow');
-var forwardArrow = document.querySelector('.forward-arrow');
-var lightBoxCloseButton = document.querySelector('.close-button');
+var mainThumbnailContainer = $('.main-thumbnail-container');
+var lightBoxScreen = $('.lightbox-screen');
+var lightBoxImage = $('.lightbox-image');
+var likeButton = $('.like-image');
+var likesDisplay = $('.number-of-likes');
+var userComment = $('.comment');
+var backArrow = $('.back-arrow');
+var forwardArrow = $('.forward-arrow');
+var lightBoxCloseButton = $('.close-button');
 
 var setLightBoxImageSource = function (currentIndex) {
     var imageSource = images[currentIndex].source;
-    lightBoxImage.setAttribute('src', imageSource);
+    lightBoxImage.attr('src', imageSource);
 };
 
 var updateComment = function (currentIndex) {
     var comment = images[currentIndex].caption;
-    userComment.textContent = comment;
+    userComment.text(comment);
 };
 
 var showLikes = function (currentIndex) {
     var numberLikes = images[currentIndex].likes;
-    likesDisplay.textContent = numberLikes;
+    likesDisplay.text(numberLikes);
 };
 
 var updateLightBox = function (currentIndex) {
@@ -43,7 +43,7 @@ var updateLightBox = function (currentIndex) {
 };
 
 var hideLightBox = function () {
-    lightBoxScreen.classList.add('hide-screen');
+    lightBoxScreen.addClass('hide-screen');
 };
 
 var increaseIndex = function () {
@@ -65,31 +65,31 @@ var decreaseIndex = function () {
 //------------  ADD IMAGES TO SCREEN  --------------
 
 images.forEach(function(image, i) {
-    var newImage = document.createElement('img');
-    newImage.setAttribute('src', image.source);
-    newImage.classList.add('thumb-image');
-    mainThumbnailContainer.appendChild(newImage);
+    var newImage = $('<img>');
+    newImage.attr('src', image.source);
+    newImage.addClass('thumb-image');
+    mainThumbnailContainer.append(newImage);
 
     var showLightBox = function () {
-        lightBoxScreen.classList.remove('hide-screen');
+        lightBoxScreen.removeClass('hide-screen');
         updateLightBox(i);
     };
 
-    newImage.addEventListener('click', showLightBox);
+    newImage.click(showLightBox);
 });
 
 
 //-------------   EVENT LISETENERS -----------------
 
-forwardArrow.addEventListener('click', increaseIndex);
-backArrow.addEventListener('click', decreaseIndex);
+forwardArrow.click(increaseIndex);
+backArrow.click(decreaseIndex);
 
-likeButton.addEventListener('click', function () {
+likeButton.click(function () {
     images[currentImageIndex].likes += 1;
     showLikes(currentImageIndex);
 });
 
-document.addEventListener("keydown", function (event) {
+$(document).keydown(function (event) {
     switch (event.key) {
         case "ArrowRight":
             increaseIndex();
@@ -105,10 +105,10 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
-window.addEventListener("click", function (event) {
-    if (event.target === lightBoxScreen) {
+$(window).click(function (event) {
+    if ($(event.target).is(lightBoxScreen) ) {
         hideLightBox();
     }
 });
 
-lightBoxCloseButton.addEventListener('click', hideLightBox);
+lightBoxCloseButton.click(hideLightBox);
